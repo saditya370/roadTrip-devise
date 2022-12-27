@@ -13,8 +13,8 @@
 ActiveRecord::Schema[7.0].define(version: 2022_12_26_064547) do
   create_table "destinations", force: :cascade do |t|
     t.string "address"
-    t.decimal "latitude"
-    t.decimal "longitude"
+    t.decimal "latitude", precision: 10, scale: 6
+    t.decimal "longitude", precision: 10, scale: 6
     t.integer "position"
     t.integer "trip_id", null: false
     t.datetime "created_at", null: false

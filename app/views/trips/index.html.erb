@@ -4,11 +4,9 @@
 
 <div id="trips">
   <% @trips.each do |trip| %>
-    <%= render trip %>
-    <p>
-      <%= link_to "Show this trip", trip %>
+      <%= link_to "#{trip.name}", trip %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New trip", new_trip_path %>
+<%= link_to "New trip", new_trip_path ,class:"btn btn-info"%>

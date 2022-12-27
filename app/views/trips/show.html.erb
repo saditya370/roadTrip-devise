@@ -6,18 +6,23 @@
 <%
 =end%>
 <p>
-    <strong>Name:</strong>
-    <%= @trip.name %>
+    <h2><strong> <%= @trip.name %></strong></h2>
+    
   </p>
+   <h3>
+  Your Destinations</h3>
   <div> 
       <%  @trip.destinations.each do |destination| %>
-        <%= destination.name%><br />
+      <ul>
+          <li>
+           <h4> <%=  destination.name%></h4>
+          </li>
+      </ul> 
       <%end%>
   </div>
 <br />
-  <h2>
-  Add destination</h2>
-<%= link_to "new destination" ,  new_trip_destination_path(@trip)%>
+ 
+<%= link_to "Add destination" ,  new_trip_destination_path(@trip)%>
 <div>
   <%
 =begin%>
@@ -26,5 +31,9 @@
 <%
 =end%>
 
-  <%= button_to "Destroy this trip", @trip, method: :delete %>
+  <%
+=begin%>
+ <%= button_to "Destroy this trip", @trip, method: :delete %> 
+<%
+=end%>
 </div>
