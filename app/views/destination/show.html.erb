@@ -1,17 +1,32 @@
 <%a=current_user.city%>
+
 <%b=Geocoder.coordinates(a)%>
-<%c=@destination.distance_to(b)%>
+
+<%c=@destination.distance_to(b).to_i%>
+
 <div class="card">
   <div class="card-body">
     <h5 class="card-title"><%=@destination.address%></h5>
     <p class="card-text">Distance between your city and this place is <%=c%> miles</p>
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </div>
-<p>
-<p>
+  <p>
 <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=1000x500&markers=size:small%7Ccolor:red%7C#{@destination.latitude},#{@destination.longitude}&key=#{Rails.application.credentials.config[:google][:maps]}", alt: "Map" %>
-</p></p>
+</p>
 </div>
+
+
+<iframe
+  width="1000"
+  height="450"
+  style="border:2"
+  loading="lazy"
+  allowfullscreen
+  referrerpolicy="no-referrer-when-downgrade"
+  src="https://www.google.com/maps/embed/v1/directions?key=<%=Rails.application.credentials.config[:google][:maps]%>
+    &origin=<%=a%>
+  &destination=<%=@destination.address%>">
+</iframe>
 
 <style>
 
