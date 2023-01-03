@@ -14,19 +14,18 @@
    <script>
    window.initMap = ()=> {
     console.log("map intialized")
-    let evt = new Event("map-loaded", {"bubbles":true, "cancelable":true});
-        
+    let evt = new Event("map-loaded", {"bubbles":true, "cancelable":true}); 
       evt.preventDefault()
-      window.dispatchEvent(evt);
-      console.log("dkfj")
-}
-   
+      window.dispatchEvent(evt);    
+   }
    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.config[:google][:maps]%>&libraries=places&callback=initMap" async defer data-turbolinks-eval= "false"></script>
     <%= javascript_importmap_tags %>
+    <%= yield(:head_tags) %>
+
   </head>
 
-  <body>
+  <body>  
   <%= render partial: "shared/navbar" %>
   <div class ='container'>
     <%= yield %>

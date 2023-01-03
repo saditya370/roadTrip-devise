@@ -1,17 +1,26 @@
 class DestinationController < ApplicationController
-    before_action :set_trip
+  before_action :authenticate_user!
+
+    
 def index 
 
 end
 
 def new
     
-    # debugger
+  
+end
+def show 
+  @trip = Trip.find(params[:trip_id])
+  @destination = @trip.destinations.find(params[:id])
+ 
+  
 
 end
 
 def create 
 # debugger
+@trip = Trip.find(params[:trip_id])
 @destination = @trip.destinations.new(destination_params)
 
     respond_to do |format|
@@ -28,9 +37,7 @@ end
 
 
 private
-def set_trip
-    @trip = Trip.find(params[:trip_id])
-  end
+
   def destination_params
     params.require(:destination).permit(:name,:position, :address, :latitude, :longitude)
   end

@@ -1,5 +1,7 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+
 
   # GET /trips or /trips.json
   def index
@@ -8,6 +10,7 @@ class TripsController < ApplicationController
 
   # GET /trips/1 or /trips/1.json
   def show
+  
   end
 
   # GET /trips/new

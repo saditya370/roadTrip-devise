@@ -1,25 +1,18 @@
 <p style="color: green"><%= notice %></p>
-
-<%
-=begin%>
- <%= render @trip %> 
-<%
-=end%>
-<p>
-    <h2><strong> <%= @trip.name %></strong></h2>
-    
-  </p>
-   <h3>
+<h2><strong> <%= @trip.name %></strong></h2>
+<h3>
   Your Destinations</h3>
-  <div> 
-      <%  @trip.destinations.each do |destination| %>
-      <ul>
-          <li>
-           <h4> <%=  destination.name%></h4>
-          </li>
-      </ul> 
-      <%end%>
+
+<%  @trip.destinations.each do |destination| %>
+<div class="card text-bg-info mb-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"> <%=  destination.address%></h5>
+     <%=link_to "Show Destination",trip_destination_path(destination, :trip_id => @trip.id)%>
   </div>
+</div>
+  <%end%>
+
+ 
 <br />
  
 <%= link_to "Add destination" ,  new_trip_destination_path(@trip)%>
