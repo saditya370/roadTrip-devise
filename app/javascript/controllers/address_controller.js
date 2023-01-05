@@ -26,7 +26,14 @@ export default class extends Controller {
       }
 
   initMap1(){
-    
+    var id =document.getElementById("test1")
+    var autocomplete =new google.maps.places.Autocomplete(id)
+    autocomplete.addListener('place_changed', function () {
+      var place = autocomplete.getPlace();
+      // place variable will have all the information you are looking for.
+      
+        
+      });
   }
     
  

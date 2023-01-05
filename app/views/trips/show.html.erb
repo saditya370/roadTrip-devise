@@ -2,8 +2,9 @@
 <h2><strong> <%= @trip.name %></strong></h2>
 <h3>
   Your Destinations</h3>
-
+<%all_addresses =[]%>
 <%  @trip.destinations.each do |destination| %>
+<%all_addresses<<destination.address%>
 <div class="card text-bg-info mb-3" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title"> <%=  destination.address%></h5>
@@ -14,8 +15,10 @@
 
  
 <br />
- 
+
 <%= link_to "Add destination" ,  new_trip_destination_path(@trip)%>
+     <%=link_to "Journey Details",trip_destination_index_path(:trip_id => @trip.id)%>
+
 <div>
   <%
 =begin%>

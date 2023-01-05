@@ -13,6 +13,9 @@
              <li class="nav-item">
             <%= link_to "Add Trip", new_trip_path, class: "nav-link active" %>
             </li>
+             <li class="nav-item">
+            <%= link_to "All trips", trips_path , class: "nav-link active"%>
+            </li>
         <%else%>
             <li class="nav-item">
             <%=link_to "Sing UP " ,new_user_registration_path,class: "nav-link"%>

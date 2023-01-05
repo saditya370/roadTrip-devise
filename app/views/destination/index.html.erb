@@ -1,0 +1,22 @@
+<h2>Hey <%=current_user.name%></h2>
+<h3>Your Trip "<%=@trip.name%>" has <%=@trip.destinations.count%> destinations</h3>
+
+
+<%total_miles= 0%>
+<%@destination.each_with_index do |dest,i|%>
+    <%if @destination[i+1] == nil%>
+        <%a=current_user.city%>
+    <%else%>
+        <%destnext = @destination[i+1]%>
+    <%end%>
+    
+    <%a_cord= Geocoder.coordinates(a || destnext.address)%>
+    <%distance= dest.distance_to(a_cord).to_i%>
+    <%total_miles += distance%>
+    <br/>
+        <p>Distance between " <%= dest.address  %> " and " <%=a || destnext.address%> " is <strong><%=distance%> miles</strong></p>
+        <%=link_to "see Routes " ,map_path(:dest => dest.address,:destnext =>a ||destnext.address)%>
+        <br />
+        
+    <%end%>
+    <h3>Your Trip "<%=@trip.name%>" is <%=total_miles%> miles long</h3>

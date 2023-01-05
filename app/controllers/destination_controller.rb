@@ -3,12 +3,20 @@ class DestinationController < ApplicationController
 
     
 def index 
-
+  @trip = Trip.find(params[:trip_id])
+  @destination = @trip.destinations.all
+ 
 end
 
 def new
     
   
+end
+def map 
+  @dest1 =params[:dest]
+   @dest2=params[:destnext]
+ 
+# debugger  
 end
 def show 
   @trip = Trip.find(params[:trip_id])
