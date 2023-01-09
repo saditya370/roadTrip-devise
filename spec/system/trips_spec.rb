@@ -47,6 +47,21 @@ RSpec.describe "Trips", type: :system do
     visit trip_path(trip)
     expect(page).to have_content("Heloo Dubai")
   end
+
+  it "dosn't create the new trips" do 
+    login_as(create(:user))
+
+    visit('/trips/new')
+    expect(page).to have_content('New trip')
+    click_button('Create Trip')
+    expect(page).to have_content("error prohibited this trip from being saved:")
+
+
+
+
+  end
+
+
   it "load the index page with the trip name" do 
     login_as(create(:user))
 
@@ -57,6 +72,8 @@ RSpec.describe "Trips", type: :system do
     expect(page).to have_content("Heloo Dubai")
     expect(page).to have_content("Heloo Noida")
   end
+
+
 
 
 end

@@ -1,4 +1,4 @@
-<%= form_with(model: trip) do |form| %>
+<%= form_with(model: trip,class: "trip_form") do |form| %>
   <% if trip.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
@@ -22,3 +22,8 @@
     <%= form.submit %>
   </div>
 <% end %>
+<style>
+.trip_form{
+  text-align: center;
+}
+</style>

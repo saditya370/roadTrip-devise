@@ -6,7 +6,7 @@ get '/map', to: 'destination#map'
 
   devise_for :users
   root 'home#pages'
- 
+  # root 'trips#index'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

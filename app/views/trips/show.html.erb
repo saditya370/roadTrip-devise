@@ -17,19 +17,14 @@
 <br />
 
 <%= link_to "Add destination" ,  new_trip_destination_path(@trip)%>
-     <%=link_to "Journey Details",trip_destination_index_path(:trip_id => @trip.id)%>
+<%=link_to "Journey Details",trip_destination_index_path(:trip_id => @trip.id)%>
 
 <div>
-  <%
-=begin%>
- <%= link_to "Edit this trip", edit_trip_path(@trip) %> |
-  <%= link_to "Back to trips", trips_path %> 
-<%
-=end%>
+  
 
-  <%
-=begin%>
- <%= button_to "Destroy this trip", @trip, method: :delete %> 
-<%
-=end%>
+<%= link_to "Edit this trip", edit_trip_path(@trip) %> |
+<%= link_to "Back to trips", trips_path %> 
+<%= button_to "Destroy this trip", @trip, method: :delete %> 
+
+
 </div>

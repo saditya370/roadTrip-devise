@@ -1,9 +1,92 @@
-<h1>Home#pages</h1>
-<p>Find me in app/views/home/pages.html.erb</p>
 
-            <%if user_signed_in? %>
-            <%= link_to "Log out", destroy_user_session_path,data: {"turbo-method": :delete}, class: "link-secondary smooth" %>
-            <%else%>
-            <%=link_to "Sing UP " ,new_user_registration_path,class: "nav-link"%>
-            <%=link_to "Log In " , new_user_session_path,class: "nav-link active"%>
-            <%end%>
+
+<section class="light">
+	<div class="container py-2">
+		<div class="h1 text-center text-dark" id="pageHeaderTitle">How To Use This App</div>
+
+		<article class="postcard light blue">
+			<a class="postcard__img_link" href="#">
+				<img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title" />
+			</a>
+			<div class="postcard__text t-dark">
+				<h1 class="postcard__title blue"><a href="#">Add a Trip</a></h1>
+				<div class="postcard__subtitle small">
+					<time datetime="2020-05-25 12:00:00">
+						<i class="fas fa-calendar-alt mr-2"></i><%= DateTime.now.strftime("%b %e %Y")  %>
+					</time>
+				</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Firstly click on Add Trip in Navbar OR Button below <br /> You will be directed to the next page</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-tag mr-2"></i> <%= link_to "Add Trip", new_trip_path, class: "nav-link active" %></li>
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light red">
+			<a class="postcard__img_link" href="#">
+				<img class="postcard__img" src="https://picsum.photos/501/500" alt="Image Title" />	
+			</a>
+			<div class="postcard__text t-dark">
+				<h1 class="postcard__title red"><a href="#">Add Destinations</a></h1>
+				<div class="postcard__subtitle small">
+					<time datetime="2020-05-25 12:00:00">
+						<i class="fas fa-calendar-alt mr-2"></i><%= DateTime.now.strftime("%b %e %Y")  %>
+					
+					</time>
+				</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Now Here you will add your destinations you wanna go on this roadtrip <br /> But you can firstly check the distance between your cities and the Destinations 
+                <br /> Click on Add Destinations
+				<ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Check Distance between your city and destinations</li>
+					
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light green">
+			<a class="postcard__img_link" href="#">
+				<img class="postcard__img" src="https://picsum.photos/500/501" alt="Image Title" />
+			</a>
+			<div class="postcard__text t-dark">
+				<h1 class="postcard__title green"><a href="#">Check Your Routes and Destinations on map</a></h1>
+				<div class="postcard__subtitle small">
+					<time datetime="2020-05-25 12:00:00">
+						<i class="fas fa-calendar-alt mr-2"></i><%= DateTime.now.strftime("%b %e %Y")  %>
+					</time>
+				</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Now You can check your destination on  map and also you can check the routes bettween your city and destination </div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-tag mr-2"></i> <%= link_to "Check Your Destinations", trips_path %></li>
+					
+				</ul>
+			</div>
+		</article>
+		<article class="postcard light yellow">
+			<a class="postcard__img_link" href="#">
+				<img class="postcard__img" src="https://picsum.photos/501/501" alt="Image Title" />
+			</a>
+			<div class="postcard__text t-dark">
+				<h1 class="postcard__title yellow"><a href="#">Trip Details</a></h1>
+				<div class="postcard__subtitle small">
+					<time datetime="2020-05-25 12:00:00">
+						<i class="fas fa-calendar-alt mr-2"></i>
+				</div>
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt">Now You can also check trip details and also check details like
+                <ul>
+                    <li>Distance between Your destinations</li>
+                    <li>Total Distance</li>
+                    <li>Total Time</li>
+                    <li>Fuel Required</li>
+                    
+                </ul>
+                </div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-tag mr-2"></i><%= link_to "Check Your Destinations", trips_path %></li>
+					
+				</ul>
+			</div>
+		</article>
+	</div>
+</section>
