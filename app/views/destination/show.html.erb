@@ -8,6 +8,27 @@
   <div class="card-body">
     <h5 class="card-title"><%=@destination.address%></h5>
     <p class="card-text">Distance between your city and this place is <%=c%> miles</p>
+    <%if @destination.id > 1%>
+   <% d= Destination.find_by(:trip_id=>@destination.trip_id,:id=>@destination.id-1)%>
+   			<%if d != nil%>
+
+   <%e = Geocoder.coordinates(d.address)%>
+   
+    <p class="card-text">Distance between your previous destination <%=d.address%> and this place is <%=@destination.distance_to(e).to_i %> miles</p>
+
+    <%end%>
+    <%end%>
+    <%if @destination.id < @trip.destinations.all.count%>
+   <% f= Destination.find_by(:trip_id=>@destination.trip_id,:id=>@destination.id+1)%>
+   			<%if f != nil%>
+
+   <%g = Geocoder.coordinates(f.address)%>
+   
+    <p class="card-text">Distance between your next destination <%=f.address%> and this place is <%=@destination.distance_to(g).to_i %> miles</p>
+
+    <%end%>
+    <%end%>
+    
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </div>
   <div>

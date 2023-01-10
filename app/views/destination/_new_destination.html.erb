@@ -1,0 +1,48 @@
+
+<div class="card mb-3">
+  <%= image_tag (asset_path 'ontheroad.png'), class: 'card-img-top img_road' %>
+
+<%= form_for Destination.new(), :url => trip_destination_index_path , method: :post do | form| %>
+  <div class="card-body">
+		 <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name,class: "input_form" %>
+  </div>
+  <div>
+    <%= form.label :address, style: "display: block"  %>
+    <%= form.text_field :address,data: { controller: "address", action: "map-loaded@window->address#initGoogle"} ,class: "input_form"%>
+  </div>
+  <div>
+    <%= form.label :latitude, style: "display: none" %>
+    <%= form.text_field :latitude ,class: "input_form",style: "display: none"%>
+
+  </div>
+   <div>
+    <%= form.label :longitude, style: "display: none" %>
+    <%= form.text_field :longitude ,class: "input_form",style: "display: none"%>
+
+  </div>
+  <div>
+  <br>
+      <%= form.button "Create Destination", type: "submit", :class=> "btn  btn-secondary" %>
+  </div>
+
+  </div>
+
+  </div>
+</div>
+<% end %>
+<style>
+#new_destination{
+  text-align: center;
+}
+.img_road{
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+  }
+.input_form{
+  border: 3px solid grey;
+  border-radius: 4px;
+}
+</style>
