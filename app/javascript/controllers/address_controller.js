@@ -13,6 +13,7 @@ export default class extends Controller {
   initGoogle(){
     console.log("google inIT  this is working ");
     console.log(google)
+    
     var id =document.getElementById("destination_address")
     var autocomplete =new google.maps.places.Autocomplete(id)
     autocomplete.addListener('place_changed', function () {

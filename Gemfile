@@ -85,3 +85,5 @@ end
 gem "geocoder"
 gem 'simplecov', require: false, group: :test
 gem 'sass-rails'
+gem 'simple_form'
+gem 'bootstrap-sass'

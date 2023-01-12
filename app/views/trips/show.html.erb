@@ -8,7 +8,26 @@
   <%= button_to "Destroy this trip", @trip, method: :delete,class: "btn btn-danger" %> 
 
 </div>
+ <h1>Tasks</h1>
+ <%= form_with(model: @trip, local: true) do |form| %>
 
+  <div data-controller="nested-form">
+    <template data-target='nested-form.template'>
+      <%= form.fields_for :destinations, Destination.new, child_index: 'TEMPLATE_RECORD' do |task| %>
+        <%= render 'dest_fields', form: task %>
+      <% end %>
+    </template>
+
+  
+
+    <div data-target="nested-form.add_item">
+      <%= link_to "Add Destination", "#", data: { action: "nested-form#add_association" } %>
+    </div>
+  </div>
+   <div class="actions">
+    <%= form.submit %>
+  </div>
+<%end%>
 <section class="light">
 	<div class="container py-2">
 		<div class="h1 text-center text-dark" id="pageHeaderTitle">All the Destinations of your Trip  </div>
