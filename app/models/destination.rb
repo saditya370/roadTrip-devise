@@ -3,6 +3,8 @@ class Destination < ApplicationRecord
  
   geocoded_by :places 
   after_validation :geocode
+  validates :latitude, presence: true
+  validates :longitude, presence: true
 
   def places
     [:address]
