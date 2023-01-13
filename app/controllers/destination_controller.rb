@@ -1,10 +1,10 @@
 class DestinationController < ApplicationController
   before_action :authenticate_user!
-
+  before_action :set_destination
     
 def index 
-  @trip = Trip.find(params[:trip_id])
-  @destination = @trip.destinations.all
+  
+  @destination = @trip.destinations
  
 end
 
@@ -14,21 +14,14 @@ def new
 end
 def map 
   @dest1 =params[:dest]
-   @dest2=params[:destnext]
+  @dest2=params[:destnext]
  
-# debugger  
 end
 def show 
-  @trip = Trip.find(params[:trip_id])
-  @destination = @trip.destinations.find(params[:id])
- 
-  
-
+  @destination = @trip.destinations.find_by(id: params[:id])
 end
 
 def create 
-# debugger
-@trip = Trip.find(params[:trip_id])
 @destination = @trip.destinations.new(destination_params)
 
     respond_to do |format|
@@ -50,3 +43,6 @@ private
     params.require(:destination).permit(:name,:position, :address, :latitude, :longitude)
   end
 end
+  def set_destination 
+    @trip = Trip.find_by(id: params[:trip_id])
+  end

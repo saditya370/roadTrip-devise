@@ -1,23 +1,22 @@
 <section class="light">
-	<div class="container py-2">
-		<div class="h1 text-center text-dark" id="pageHeaderTitle">All your Trips</div>
+  <div class="container py-2">
+	<div class="h1 text-center text-dark" id="pageHeaderTitle">All your Trips</div>
        <% @trips.each do |trip| %>
-		<article class="postcard light blue">
+		 <article class="postcard light blue">
 			<a class="postcard__img_link" href="#">
 				<img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title" />
 			</a>
 			<div class="postcard__text t-dark">
 				<h1 class="postcard__title blue"><a href="#"><%= link_to "#{trip.name}", trip %></a></h1>
 				<div class="postcard__subtitle small">
-        <%= link_to "#{"Show Trip"}", trip,class: "btn btn-secondary" %>
+                    <%= link_to "#{"Show Trip"}", trip,class: "btn btn-secondary" %>
 					<%= link_to "Add Trip", new_trip_path, class: "btn btn-secondary" %>
 				</div>
 				<div class="postcard__bar"></div>
-				<div class="postcard__preview-txt"></div>
-				
+				<div class="postcard__preview-txt"></div>	
 			</div>
-		</article>
-<%end%>
-      </div>
+		 </article>
+		<%end%>
     </div>
-  <section>      
+  </div>
+<section>      

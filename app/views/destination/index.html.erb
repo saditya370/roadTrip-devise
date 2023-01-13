@@ -5,17 +5,17 @@
 <%total_miles= 0%>
 <%@destination.each_with_index do |dest,i|%>
     <%if @destination[i+1] == nil%>
-        <%a=current_user.city%>
+        <%city=current_user.city%>
     <%else%>
         <%destnext = @destination[i+1]%>
     <%end%>
     
-    <%a_cord= Geocoder.coordinates(a || destnext.address)%>
-    <%distance= dest.distance_to(a_cord).to_i%>
+    <%dest_cordinates= Geocoder.coordinates(city) || [destnext.latitude,destnext.longitude]%>
+    <%distance= dest.distance_to(dest_cordinates).to_i%>
     <%total_miles += distance%>
     <br/>
-        <p>Distance between " <%= dest.address  %> " and " <%=a || destnext.address%> " is <strong><%=distance%> miles</strong></p>
-        <%=link_to "see Routes " ,map_path(:dest => dest.address,:destnext =>a ||destnext.address)%>
+        <p>Distance between " <%= dest.address  %> " and " <%=city || destnext.address%> " is <strong><%=distance%> miles</strong></p>
+        <%=link_to "see Routes " ,map_path(:dest => dest.address,:destnext =>city ||destnext.address)%>
         <br />
         
     <%end%>

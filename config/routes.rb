@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   resources :trips  do 
-  resources :destination
-end
-get '/map', to: 'destination#map'
-
+      resources :destination
+  end
+  get '/map', to: 'destination#map'
   devise_for :users
   root 'home#pages'
   # root 'trips#index'

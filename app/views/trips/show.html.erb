@@ -1,56 +1,46 @@
 <br />
-  <br />
+<br />
 <div class="d-grid gap-2 d-md-flex justify-content-md-between">
   <%= link_to "Add More Destination to the Trip" ,  new_trip_destination_path(@trip),class: "btn btn-secondary"%>
   <%=link_to "Journey Details",trip_destination_index_path(:trip_id => @trip.id),class: "btn btn-secondary"%>
-
-  
   <%= button_to "Destroy this trip", @trip, method: :delete,class: "btn btn-danger" %> 
-
 </div>
 
 <section class="light">
 	<div class="container py-2">
 		<div class="h1 text-center text-dark" id="pageHeaderTitle">All the Destinations of your Trip  </div>
-        <%all_addresses =[]%>
-       <%  @trip.destinations.each do |destination| %>
-       <%all_addresses<<destination.address%>
-		<article class="postcard light blue">
-			<a class="postcard__img_link" href="#">
-		<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=350x350&markers=size:small%7Ccolor:red%7C#{destination.latitude},#{destination.longitude}&key=#{Rails.application.credentials.config[:google][:maps]}", alt: "Map" %>
-
-			</a>
-			
-			<div class="postcard__text t-dark">
-			
-				<h1 class="postcard__title blue"><a href="#"><%=  destination.address%></a></h1>
-				<div class="postcard__subtitle small">
-				 <%if destination.id > 1%>
-			<% d= Destination.find_by(:trip_id=>destination.trip_id,:id=>destination.id-1)%>
-			<%if d != nil%>
-			<%e = Geocoder.coordinates(d.address)%>
-			
-				<p class="card-text">Distance between your previous destination <%=d.address%> and this place is <%=destination.distance_to(e).to_i %> miles</p>
-
-				<%end%>
-				<%end%>
-				<%if destination.id < @trip.destinations.count-1%>
-			<% f= Destination.find_by(:trip_id=>destination.trip_id,:id=>destination.id+1)%>
-			<%if f != nil%>
-			<%g = Geocoder.coordinates(f.address)%>
-			
-				<p class="card-text">Distance between your next destination <%=f.address%> and this place is <%=destination.distance_to(g).to_i %> miles</p>
-			<%end%>
+          <%all_addresses =[]%>
+          <%@trip.destinations.each do |destination| %>
+            <%all_addresses<<destination.address%>
+			<article class="postcard light blue">
+					<a class="postcard__img_link" href="#">
+					<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=350x350&markers=size:small%7Ccolor:red%7C#{destination.latitude},#{destination.longitude}&key=#{Rails.application.credentials.config[:google][:maps]}", alt: "Map" %>
+					</a>
+					<div class="postcard__text t-dark">
+					<h1 class="postcard__title blue"><a href="#"><%=  destination.address%></a></h1>
+					<div class="postcard__subtitle ">
+						<%if destination.id > 1%>
+								<% prev_dest=  prev_destination(destination.trip_id,destination.id-1)%>
+								<%if prev_dest != nil%>
+									<%prev_dest_cordinates = [prev_dest.latitude,prev_dest.longitude]%>
+									<p class="card-text">Distance between your previous destination <%=prev_dest.address%> and this place is <%=destination.distance_to(prev_dest_cordinates).to_i %> miles</p>
+								<%end%>
+						<%end%>
+						<%if destination.id < @trip.destinations.count%>
+								<% next_dest= next_destination(destination.trip_id,destination.id+1)%>
+								<%if next_dest != nil%>
+									<%next_dest_cordinates = [next_dest.latitude,next_dest.longitude]%>
+									<p class="card-text">Distance between your next destination <%=next_dest.address%> and this place is <%=destination.distance_to(next_dest_cordinates).to_i %> miles</p>
+								<%end%>
+						<%end%>
+						</div>
+						<div class="postcard__preview-txt"><%=  destination.address%></div>
+						<ul class="postcard__tagbox">
+							<li class="tag__item"><i class="fas fa-tag mr-2"></i>  <%=link_to "Details about your Destination",trip_destination_path(destination, :trip_id => @trip.id)%></li>
+						</ul>
+					</div>
+			</article>
           <%end%>
-				</div>
-				<div class="postcard__bar"></div>
-				<div class="postcard__preview-txt"><%=  destination.address%></div>
-				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-tag mr-2"></i>  <%=link_to "Details about your Destination",trip_destination_path(destination, :trip_id => @trip.id)%></li>
-				</ul>
-			</div>
-		</article>
-<%end%>
       </div>
     </div>
   <section>      

@@ -1,61 +1,44 @@
-  <%a=current_user.city%>
+<%city=current_user.city%>
+<%city_cordinates = Geocoder.coordinates(city)%>
+<%distance=@destination.distance_to(city_cordinates).to_i%>    
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%=@destination.address%></h5>
+        <p class="card-text">Distance between your city and this place is <%=distance%> miles</p>
+        <%if @destination.id > 1%>
+          <% previous_dest= prev_destination(@destination.trip_id,@destination.id-1)%>
+          <%if previous_dest != nil%>
+            <%prev_dest_cordinates =  [previous_dest.latitude,previous_dest.longitude]%>
+            <p class="card-text">Distance between your previous destination <%=previous_dest.address%> and this place is <%=@destination.distance_to(prev_dest_cordinates).to_i %> miles</p>
+          <%end%>
+        <%end%>
+        <%if @destination.id < @trip.destinations.all.count%>
+            <% next_dest= next_destination(@destination.trip_id,@destination.id+1)%>
+            <%if next_dest != nil%>
+              <%next_dest_cordinates = [next_dest.latitude,next_dest.longitude]%>
+              <p class="card-text">Distance between your next destination <%=next_dest.address%> and this place is <%=@destination.distance_to(next_dest_cordinates).to_i %> miles</p>
+            <%end%>
+        <%end%>
+      
+        <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=500x450&markers=size:small%7Ccolor:red%7C#{@destination.latitude},#{@destination.longitude}&key=#{Rails.application.credentials.config[:google][:maps]}", alt: "Map" %>
 
-<%b=Geocoder.coordinates(a)%>
-
-<%c=@destination.distance_to(b).to_i%>    
-
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title"><%=@destination.address%></h5>
-    <p class="card-text">Distance between your city and this place is <%=c%> miles</p>
-    <%if @destination.id > 1%>
-   <% d= Destination.find_by(:trip_id=>@destination.trip_id,:id=>@destination.id-1)%>
-   			<%if d != nil%>
-
-   <%e = Geocoder.coordinates(d.address)%>
-   
-    <p class="card-text">Distance between your previous destination <%=d.address%> and this place is <%=@destination.distance_to(e).to_i %> miles</p>
-
-    <%end%>
-    <%end%>
-    <%if @destination.id < @trip.destinations.all.count%>
-   <% f= Destination.find_by(:trip_id=>@destination.trip_id,:id=>@destination.id+1)%>
-   			<%if f != nil%>
-
-   <%g = Geocoder.coordinates(f.address)%>
-   
-    <p class="card-text">Distance between your next destination <%=f.address%> and this place is <%=@destination.distance_to(g).to_i %> miles</p>
-
-    <%end%>
-    <%end%>
-    
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-  </div>
-  <div>
-<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=500x450&markers=size:small%7Ccolor:red%7C#{@destination.latitude},#{@destination.longitude}&key=#{Rails.application.credentials.config[:google][:maps]}", alt: "Map" %>
-
-<iframe
-  align="right"
-  width="500"
-  height="450"
-  style="border:2"
-  loading="lazy"
-  allowfullscreen
-  referrerpolicy="no-referrer-when-downgrade"
-  src="https://www.google.com/maps/embed/v1/directions?key=<%=Rails.application.credentials.config[:google][:maps]%>
-    &origin=<%=a%>
-  &destination=<%=@destination.address%>">
-</iframe>
-</div>
-
-</div>
-
-
-
+        <iframe
+          align="right"
+          width="500"
+          height="450"
+          style="border:2"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed/v1/directions?key=<%=Rails.application.credentials.config[:google][:maps]%>
+            &origin=<%=city%>
+          &destination=<%=@destination.address%>">
+        </iframe>
+      </div>
+    </div>
 <style>
-
-#map {
-    width: 600px;
-    height: 400px;
-}
+  #map {
+      width: 600px;
+      height: 400px;
+  }
 </style>
