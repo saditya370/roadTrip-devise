@@ -1,4 +1,4 @@
-<%city=current_user.city%>
+<%city=current_user.address%>
 <%city_cordinates = Geocoder.coordinates(city)%>
 <%distance=@destination.distance_to(city_cordinates).to_i%>    
     <div class="card">

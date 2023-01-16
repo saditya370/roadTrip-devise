@@ -5,6 +5,7 @@ class Destination < ApplicationRecord
   after_validation :geocode
   validates :latitude, presence: true
   validates :longitude, presence: true
+  include Validation
 
   def places
     [:address]

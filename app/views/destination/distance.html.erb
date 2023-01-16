@@ -1,5 +1,5 @@
-<% @dest1 =params[:dest]%>  
-<%@dest2=params[:destnext]%>
+<%dest1 = params[:destination][:starting_address]%>
+<%dest2 =params[:destination][:end_address]%>
 <iframe
   width="1000"
   height="450"
@@ -8,6 +8,6 @@
   allowfullscreen
   referrerpolicy="no-referrer-when-downgrade"
   src="https://www.google.com/maps/embed/v1/directions?key=<%=Rails.application.credentials.config[:google][:maps]%>
-    &origin=<%=@dest1%>
-  &destination=<%=@dest2%>">
+    &origin=<%=dest1%>
+  &destination=<%=dest2%>">
 </iframe>

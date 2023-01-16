@@ -5,7 +5,7 @@
 <%total_miles= 0%>
 <%@destination.each_with_index do |dest,i|%>
     <%if @destination[i+1] == nil%>
-        <%city=current_user.city%>
+        <%city=current_user.address%>
     <%else%>
         <%destnext = @destination[i+1]%>
     <%end%>

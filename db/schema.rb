@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_03_100648) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_16_083611) do
   create_table "destinations", force: :cascade do |t|
     t.string "address"
     t.decimal "latitude", precision: 10, scale: 6
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_100648) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "city"
+    t.string "address"
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
     t.index ["email"], name: "index_users_on_email", unique: true

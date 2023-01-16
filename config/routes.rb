@@ -3,6 +3,9 @@ Rails.application.routes.draw do
       resources :destination
   end
   get '/map', to: 'destination#map'
+  get '/distance', to: 'home#distance'
+  get '/distance', to: 'destination#distance'
+  post '/distance', to: 'destination#distance'
   devise_for :users
   root 'home#pages'
   # root 'trips#index'

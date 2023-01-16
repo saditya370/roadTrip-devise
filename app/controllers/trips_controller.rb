@@ -9,9 +9,7 @@ class TripsController < ApplicationController
   end
 
   # GET /trips/1 or /trips/1.json
-  def show
-  
-  end
+  def show; end
 
   # GET /trips/new
   def new
@@ -19,15 +17,15 @@ class TripsController < ApplicationController
   end
 
   # GET /trips/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /trips or /trips.json
   def create
     @trip = current_user.trips.new(trip_params)
-
+  
     respond_to do |format|
       if @trip.save
+        TripCreator.new(@trip).mail
         format.html { redirect_to trip_url(@trip), notice: "Trip was successfully created." }
         format.json { render :show, status: :created, location: @trip }
       else

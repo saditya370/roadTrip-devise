@@ -1,0 +1,11 @@
+<%= form_for :destination, url: {action: "distance"}, data: {:turbo=> false} do |form| %>
+         <div>
+    <%= form.label :starting_address, style: "display: block"  %>
+    <%= form.text_field :starting_address,id: "destination_address",data: { controller: "address", action: "map-loaded@window->address#initGoogle"} ,class: "input_form"%>
+  </div>
+         <div>
+    <%= form.label :end_address, style: "display: block"  %>
+    <%= form.text_field :end_address,id: "test1",data: { controller: "address", action: "map-loaded@window->address#initGoogle"} ,class: "input_form"%>
+  </div>
+<%=form.submit "See routes"%>
+<%end%>
