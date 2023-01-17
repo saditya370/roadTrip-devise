@@ -1,7 +1,5 @@
 <h2>Hey <%=current_user.name%></h2>
 <h3>Your Trip "<%=@trip.name%>" has <%=@trip.destinations.count%> destinations</h3>
-
-
 <%total_miles= 0%>
 <%@destination.each_with_index do |dest,i|%>
     <%if @destination[i+1] == nil%>

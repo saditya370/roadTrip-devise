@@ -14,7 +14,7 @@
             <%all_addresses<<destination.address%>
 			<article class="postcard light blue">
 					<a class="postcard__img_link" href="#">
-					<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=350x350&markers=size:small%7Ccolor:red%7C#{destination.latitude},#{destination.longitude}&key=#{Rails.application.credentials.config[:google][:maps]}", alt: "Map" %>
+					<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=350x350&markers=size:small%7Ccolor:red%7C#{destination.latitude},#{destination.longitude}&key=#{Rails.application.credentials.config[:maps]}", alt: "Map" %>
 					</a>
 					<div class="postcard__text t-dark">
 					<h1 class="postcard__title blue"><a href="#"><%=  destination.address%></a></h1>

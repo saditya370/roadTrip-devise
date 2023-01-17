@@ -20,7 +20,7 @@
             <%end%>
         <%end%>
       
-        <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=500x450&markers=size:small%7Ccolor:red%7C#{@destination.latitude},#{@destination.longitude}&key=#{Rails.application.credentials.config[:google][:maps]}", alt: "Map" %>
+        <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=500x450&markers=size:small%7Ccolor:red%7C#{@destination.latitude},#{@destination.longitude}&key=#{Rails.application.credentials.config[:maps]}", alt: "Map" %>
 
         <iframe
           align="right"
@@ -30,7 +30,7 @@
           loading="lazy"
           allowfullscreen
           referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed/v1/directions?key=<%=Rails.application.credentials.config[:google][:maps]%>
+          src="https://www.google.com/maps/embed/v1/directions?key=<%=Rails.application.credentials.config[:maps]%>
             &origin=<%=city%>
           &destination=<%=@destination.address%>">
         </iframe>
