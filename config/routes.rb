@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :trips  do 
-      resources :destinations
+      resources :destinations do 
+        member do 
+          patch :move
+        end
+      end
   end
   get '/map', to: 'destinations#map'
   get '/distance', to: 'home#distance'

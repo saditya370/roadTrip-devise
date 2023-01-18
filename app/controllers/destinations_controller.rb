@@ -13,6 +13,12 @@ class DestinationsController < ApplicationController
   def show 
     @destination = @trip.destinations.find_by(id: params[:id])
   end
+  def move 
+    
+    @destination = Destination.find_by(id: params[:id])
+    @destination.insert_at!(params[:position].to_i)
+    head :ok
+  end
 
   def create 
     destination_create = DestinationCreatorService.new(params[:destination],@trip).create_destination

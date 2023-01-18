@@ -4,6 +4,8 @@ class Destination < ApplicationRecord
   include Validation
   include Position
   
+  acts_as_list
+
   geocoded_by :places 
   after_validation :geocode
 
