@@ -1,4 +1,4 @@
-class TripCreator
+class TripCreatorService
 
     def initialize(trip) 
       @trip = trip

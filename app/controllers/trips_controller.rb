@@ -25,7 +25,7 @@ class TripsController < ApplicationController
   
     respond_to do |format|
       if @trip.save
-        TripCreator.new(@trip).mail
+        TripCreatorService.new(@trip).mail
         format.html { redirect_to trip_url(@trip), notice: "Trip was successfully created." }
         format.json { render :show, status: :created, location: @trip }
       else

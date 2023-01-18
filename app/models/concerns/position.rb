@@ -3,8 +3,8 @@ module Position
     included do 
         before_create :set_position
         def set_position
-            @trip = Trip.find_by(id: trip_id)
-            max_position = @trip.destinations.maximum(:position)
+            set_trip()
+            max_position = find_max_position()
             self.position = max_position.nil? ? 1 : max_position + 1
           end
 
@@ -13,7 +13,7 @@ module Position
         end
 
         def find_max_position
-            max_position = @trip.destinations.maximum(:position)
+          @trip.destinations.maximum(:position)
         end
     end
 

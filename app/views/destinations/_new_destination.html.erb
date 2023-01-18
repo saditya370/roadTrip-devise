@@ -2,7 +2,7 @@
 <div class="card mb-3">
   <%= image_tag (asset_path 'ontheroad.png'), class: 'card-img-top img_road' %>
 
-<%= form_for Destination.new(), :url => trip_destination_index_path , method: :post do | form| %>
+<%= form_for Destination.new(), :url => trip_destinations_path , method: :post do | form| %>
   <div class="card-body">
 		 <div>
     <%= form.label :name, style: "display: block" %>

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   resources :trips  do 
-      resources :destination
+      resources :destinations
   end
-  get '/map', to: 'destination#map'
+  get '/map', to: 'destinations#map'
   get '/distance', to: 'home#distance'
-  get '/distance', to: 'destination#distance'
-  post '/distance', to: 'destination#distance'
+  get '/distance', to: 'destinations#distance'
+  post '/distance', to: 'destinations#distance'
   devise_for :users
   root 'home#pages'
   # root 'trips#index'

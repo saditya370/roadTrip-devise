@@ -1,4 +1,4 @@
-class DestinationCreator
+class DestinationCreatorService
     def initialize(params,trip)
         @name = params[:name]
         @address = params[:address]

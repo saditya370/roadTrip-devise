@@ -1,4 +1,4 @@
-class DestinationController < ApplicationController
+class DestinationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_destination
     
@@ -15,7 +15,7 @@ class DestinationController < ApplicationController
   end
 
   def create 
-    destination_create = DestinationCreator.new(params[:destination],@trip).create_destination
+    destination_create = DestinationCreatorService.new(params[:destination],@trip).create_destination
     if destination_create
       redirect_to trip_path(@trip)
     else
