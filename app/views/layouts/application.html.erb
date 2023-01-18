@@ -18,7 +18,7 @@
       window.dispatchEvent(evt);    
    }
    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.config[:maps]%>&libraries=places&callback=initMap" async defer data-turbolinks-eval= "false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.maps%>&libraries=places&callback=initMap" async defer data-turbolinks-eval= "false"></script>
     <%= javascript_importmap_tags %>
     <%= yield(:head_tags) %>
 
