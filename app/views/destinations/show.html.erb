@@ -6,14 +6,14 @@
         <h5 class="card-title"><%=@destination.address%></h5>
         <p class="card-text">Distance between your city and this place is <%=distance%> miles</p>
         <%if @destination.id > 1%>
-          <% previous_dest= prev_destination(@destination.trip_id,@destination.id-1)%>
+          <% previous_dest= prev_destination(@destination.trip_id,@destination.id)%>
           <%if previous_dest != nil%>
             <%prev_dest_cordinates =  [previous_dest.latitude,previous_dest.longitude]%>
             <p class="card-text">Distance between your previous destination <%=previous_dest.address%> and this place is <%=@destination.distance_to(prev_dest_cordinates).to_i %> miles</p>
           <%end%>
         <%end%>
         <%if @destination.id < @trip.destinations.all.count%>
-            <% next_dest= next_destination(@destination.trip_id,@destination.id+1)%>
+            <% next_dest= next_destination(@destination.trip_id,@destination.id)%>
             <%if next_dest != nil%>
               <%next_dest_cordinates = [next_dest.latitude,next_dest.longitude]%>
               <p class="card-text">Distance between your next destination <%=next_dest.address%> and this place is <%=@destination.distance_to(next_dest_cordinates).to_i %> miles</p>

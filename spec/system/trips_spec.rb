@@ -8,10 +8,10 @@ RSpec.describe "Trips", type: :system do
   it 'add the new trip to the list of trips' do
     login_as(create(:user))
     visit('/')
-    click_link('New trip')
+    click_link('Add Trips')
     expect(page).to have_content('New trip')
     expect(current_path).to eql('/trips/new')
-    fill_in('Name',with: 'Uttarkashi')
+    fill_in('trip_name',with: 'Uttarkashi')
     click_button('Create Trip')
     expect(page).to have_content('Uttarkashi')
 
@@ -23,7 +23,7 @@ RSpec.describe "Trips", type: :system do
 
     visit('/trips')
     expect(page).to have_content('Trips')
-    click_link('New trip')
+    click_link('Add Trips')
     expect(current_path).to eql('/trips/new')
     expect(page).to have_content('New trip')
   end

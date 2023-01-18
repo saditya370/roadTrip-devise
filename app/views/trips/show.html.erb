@@ -8,7 +8,7 @@
 
 <section class="light">
 	<div class="container py-2">
-		<div class="h1 text-center text-dark" id="pageHeaderTitle">All the Destinations of your Trip  </div>
+		<div class="h1 text-center text-dark" id="pageHeaderTitle">All the Destinations of your Trip <%=@trip.name%>  </div>
           <%all_addresses =[]%>
           <%@trip.destinations.each do |destination| %>
             <%all_addresses<<destination.address%>
@@ -20,14 +20,14 @@
 					<h1 class="postcard__title blue"><a href="#"><%=  destination.address%></a></h1>
 					<div class="postcard__subtitle ">
 						<%if destination.id > 1%>
-								<% prev_dest=  prev_destination(destination.trip_id,destination.id-1)%>
+								<% prev_dest=  prev_destination(destination.trip_id,destination.id)%>
 								<%if prev_dest != nil%>
 									<%prev_dest_cordinates = [prev_dest.latitude,prev_dest.longitude]%>
 									<p class="card-text">Distance between your previous destination <%=prev_dest.address%> and this place is <%=destination.distance_to(prev_dest_cordinates).to_i %> miles</p>
 								<%end%>
 						<%end%>
 						<%if destination.id < @trip.destinations.count%>
-								<% next_dest= next_destination(destination.trip_id,destination.id+1)%>
+								<% next_dest= next_destination(destination.trip_id,destination.id)%>
 								<%if next_dest != nil%>
 									<%next_dest_cordinates = [next_dest.latitude,next_dest.longitude]%>
 									<p class="card-text">Distance between your next destination <%=next_dest.address%> and this place is <%=destination.distance_to(next_dest_cordinates).to_i %> miles</p>
