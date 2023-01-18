@@ -1,11 +1,13 @@
 <h2>Hey <%=current_user.name%></h2>
 <h3>Your Trip "<%=@trip.name%>" has <%=@trip.destinations.count%> destinations</h3>
 <%total_miles= 0%>
-<%@destination.each_with_index do |dest,i|%>
+<%@destination.order(position: :asc).each_with_index do |dest,i|%>
     <%if @destination[i+1] == nil%>
         <%city=current_user.address%>
     <%else%>
-        <%destnext = @destination[i+1]%>
+        <%pos = dest.position + 1%>
+        <%destnext = Destination.find_by(trip_id:  @trip.id,position: pos)
+%>
     <%end%>
     
     <%dest_cordinates= Geocoder.coordinates(city) || [destnext.latitude,destnext.longitude]%>

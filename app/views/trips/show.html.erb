@@ -6,13 +6,15 @@
   <%= button_to "Destroy this trip", @trip, method: :delete,class: "btn btn-danger" %> 
 </div>
 
-<section class="light">
-	<div class="container py-2">
+<section class="light" >
+	<div class="container py-2" data-controller = "drag" data-drag-url ="/trips/:trip_id/destinations/:id/move" id="todos">
 		<div class="h1 text-center text-dark" id="pageHeaderTitle">All the Destinations of your Trip <%=@trip.name%>  </div>
           <%all_addresses =[]%>
-          <%@trip.destinations.each do |destination| %>
+		  
+          <%@trip.destinations.order(position: :asc).each do |destination| %>
+		  
             <%all_addresses<<destination.address%>
-			<article class="postcard light blue">
+			<article class="postcard light blue" data-id = "<%= destination.id%>">
 					<a class="postcard__img_link" href="#">
 					<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=350x350&markers=size:small%7Ccolor:red%7C#{destination.latitude},#{destination.longitude}&key=#{Rails.application.credentials.maps}", alt: "Map" %>
 					</a>

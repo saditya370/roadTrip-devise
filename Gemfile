@@ -86,3 +86,4 @@ gem "geocoder"
 gem 'simplecov', require: false, group: :test
 gem 'sass-rails'
 gem "letter_opener", group: :development
+gem "acts_as_list"
